@@ -1,5 +1,6 @@
 package homework;
 
+import models.User;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,8 +17,9 @@ public class HmwIlCarroLogin extends HmwTestBase {
 
     @Test
     public void LoginPositiveTest(){
+        User user = new User().withEmail("olgaludman@gmail.com").withPassword("Ol4ik1Ya");
         app.getUserHelper().openLoginForm();
-        app.getUserHelper().fillLoginForm("olgaludman@gmail.com", "Ol4ik1Ya");
+//        app.getUserHelper().fillLoginForm("olgaludman@gmail.com", "Ol4ik1Ya");
         app.getUserHelper().submitLogin();
 
         Assert.assertTrue(app.getUserHelper().isLogged());

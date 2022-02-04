@@ -1,5 +1,6 @@
 package hmwmanager;
 
+import models.User;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
@@ -20,6 +21,10 @@ public class UserHelper extends HelperBase {
         type(By.id("password"),password);
     }
 
+    public void fillLoginForm(User user){
+        type(By.id("email"), user.getEmail());
+        type(By.id("password"),user.getPassword());
+    }
     public void submitLogin(){
         click(By.cssSelector("button[type='submit']"));
     }

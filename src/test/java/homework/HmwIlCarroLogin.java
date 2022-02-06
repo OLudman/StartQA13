@@ -20,6 +20,7 @@ public class HmwIlCarroLogin extends HmwTestBase {
         User user = new User().withEmail("olgaludman@gmail.com").withPassword("Ol4ik1Ya");
         app.getUserHelper().openLoginForm();
 //        app.getUserHelper().fillLoginForm("olgaludman@gmail.com", "Ol4ik1Ya");
+        app.getUserHelper().fillLoginForm(user);
         app.getUserHelper().submitLogin();
 
         Assert.assertTrue(app.getUserHelper().isLogged());

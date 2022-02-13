@@ -6,6 +6,8 @@ import org.openqa.selenium.Rectangle;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class UserHelper extends HelperBase {
     public UserHelper(WebDriver wd) {
@@ -26,6 +28,7 @@ public class UserHelper extends HelperBase {
         type(By.id("password"),user.getPassword());
     }
     public void submitLogin(){
+        new WebDriverWait(wd,10).until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@type='submit']")));
         click(By.cssSelector("button[type='submit']"));
     }
 
@@ -36,6 +39,7 @@ public class UserHelper extends HelperBase {
     public void openRegistrationForm(){
         click(By.xpath("//a[text()='Log in']"));
         click(By.xpath("//*[text()='Click here']"));
+        //        click(By.cssSelector("[href$='/registration?url=%2Fsearch']"));
     }
 
     public void fillRegistrationForm(String name, String lastName, String email, String password){
@@ -43,6 +47,13 @@ public class UserHelper extends HelperBase {
         type(By.id("lastName"), lastName);
         type(By.id("email"), email);
         type(By.id("password"), password);
+    }
+
+    public void fillRegistrationForm(User user){
+        type(By.id("name"), user.getName());
+        type(By.id("lastName"), user.getLastName());
+        type(By.id("email"), user.getEmail());
+        type(By.id("password"), user.getPassword());
     }
 
     public void submitRegistrationForm(){
@@ -65,5 +76,19 @@ public class UserHelper extends HelperBase {
 
     public void logOut() {
         click(By.xpath("//a[normalize-space()='Logout']"));
+    }
+
+    public void clickOkButton(){
+        if(isElementPresent(By.xpath("//button[text() ='Ok']"))){
+            click(By.xpath("//button[text() ='Ok']"));
+        }
+    }
+
+    public void login(User user) {
+        openLoginForm();
+        fillLoginForm(user);
+        submitLogin();
+        clickOkButton();
+        pause(1000);
     }
 }

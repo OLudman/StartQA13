@@ -10,6 +10,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 //import static javafx.beans.binding.Bindings.select;
 
 public class CarHelper extends HelperBase{
+    public boolean isErrorOccured(){
+        return isElementPresent(By.cssSelector(".error"));
+    };
+
     public CarHelper(WebDriver wd) {
         super(wd);
     }

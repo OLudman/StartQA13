@@ -31,7 +31,6 @@ public class AddNewCarTests extends HmwTestBase{
                 .doors("5")
                 .seats("4")
                 .carClass("C")
-                .fuel("Petrol")
                 .fuelConsumption("6.4")
                 .carRegistrationNumber("I7837WS"+i)
                 .price("65")
@@ -47,7 +46,68 @@ public class AddNewCarTests extends HmwTestBase{
         app.getCar().clickSearch();
     }
 
-    // testPositive2 -add one new car
-    // testNegativeByPass
+    @Test
+    public void addNewCarPositive2(){
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        Car car = Car.builder()
+                .address("Haifa")
+                .make("Mazda")
+                .model("3")
+                .year("2013")
+                .engine("1.4")
+                .fuel("Diesel")
+                .gear("MT")
+                .WD("RWD")
+                .doors("3")
+                .seats("5")
+                .carClass("A")
+                .fuelConsumption("6.4")
+                .carRegistrationNumber("YUT7676"+i)
+                .price("25")
+                .distanceIncluded("2000")
+                .typeFeature("just any feature")
+                .about("My first car")
+                .build();
+        app.getCar().openCarForm();
+        app.getCar().fillCarForm(car);
+        app.getCar().attachPhoto();
+        app.getUserHelper().submitLogin();
+        Assert.assertTrue(app.getCar().isCarAdded());
+        app.getCar().clickSearch();
+    }
+
+    @Test
+    public void addNewCarNegativeByFuelConsumption(){
+        int i = (int)(System.currentTimeMillis()/1000)%3600;
+        Car car = Car.builder()
+                .address("Tel Aviv")
+                .make("BMW")
+                .model("M5")
+                .year("2020")
+                .engine("2.3")
+                .fuel("Petrol")
+                .gear("AT")
+                .WD("AWD")
+                .doors("5")
+                .seats("4")
+                .carClass("C")
+                .fuelConsumption("-6.4")
+                .carRegistrationNumber("I7837WS"+i)
+                .price("65")
+                .distanceIncluded("500")
+                .typeFeature("type of ")
+                .about("Very nice car")
+                .build();
+        app.getCar().openCarForm();
+        app.getCar().fillCarForm(car);
+        app.getCar().attachPhoto();
+        Assert.assertTrue(app.getCar().isErrorOccured());
+
+        // Assert that button Submit is disabled
+        // how could I check that button[type='submit'] is disabled?
+        // <button _ngcontent-sls-c81="" type="submit" disabled="" style="" xpath="1"></button>
+
+        // return to the beginning by clicking a.navigation-link[href$='/search']
+    }
 
 }

@@ -80,4 +80,18 @@ public class CarHelper extends HelperBase{
     public void clickSearch() {
         click(By.xpath("//button[text()='Search cars']"));
     }
+
+    public boolean isSubmitButtonDisabled() {
+        if(wd.findElement(By.cssSelector("button[type='submit']")).isEnabled())
+            return false;
+        return true;
+    }
+
+    public boolean isSubmitButtonDisabled2(){
+        return isElementPresent(By.xpath("//button[@disabled]"));
+    }
+
+    public void returnToMainPageAfterNegativeTest() {
+        click(By.cssSelector("a.navigation-link[href$='/search']"));
+    }
 }

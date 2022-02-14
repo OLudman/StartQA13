@@ -103,11 +103,9 @@ public class AddNewCarTests extends HmwTestBase{
         app.getCar().attachPhoto();
         Assert.assertTrue(app.getCar().isErrorOccured());
 
-        // Assert that button Submit is disabled
-        // how could I check that button[type='submit'] is disabled?
-        // <button _ngcontent-sls-c81="" type="submit" disabled="" style="" xpath="1"></button>
-
-        // return to the beginning by clicking a.navigation-link[href$='/search']
+        Assert.assertTrue(app.getCar().isSubmitButtonDisabled());
+//        Assert.assertTrue(app.getCar().isSubmitButtonDisabled2());
+        app.getCar().returnToMainPageAfterNegativeTest();
     }
 
 }

@@ -9,6 +9,7 @@ public class ApplicationManager {
     WebDriver wd;
     UserHelper userHelper;
     CarHelper car;
+    HelperSearch search;
 
     public void init(){
         wd = new ChromeDriver();
@@ -18,11 +19,16 @@ public class ApplicationManager {
 
         userHelper = new UserHelper(wd);
         car = new CarHelper(wd);
+        search = new HelperSearch(wd);
 
     }
 
     public UserHelper getUserHelper() {
         return userHelper;
+    }
+
+    public HelperSearch getSearch() {
+        return search;
     }
 
     public void stop(){

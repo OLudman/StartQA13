@@ -34,7 +34,7 @@ public class CarHelper extends HelperBase{
             select(By.id("gear"), car.getGear());
             select(By.id("wheelsDrive"), car.getWD());
 
-            type(By.id("door"), car.getDoors());
+            type(By.id("doors"), car.getDoors());
             type(By.id("seats"), car.getSeats());
             type(By.id("class"), car.getCarClass());
             type(By.id("fuelConsumption"), car.getFuelConsumption());

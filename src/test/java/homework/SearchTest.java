@@ -27,6 +27,13 @@ public class SearchTest extends HmwTestBase{
     }
 
     @Test
+    public void searchPeriodAnyDataInFuture(){
+        app.getSearch().fillSearchFormInFuture("Haifa, Israel", "03/30/2022", "06/25/2023");
+        app.getUserHelper().submitRegistrationForm();
+        Assert.assertTrue(app.getSearch().isListOfCarsAppeared());
+    }
+
+    @Test
     public void typePeriodInPast(){
 
     }

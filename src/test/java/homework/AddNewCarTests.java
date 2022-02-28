@@ -38,10 +38,11 @@ public class AddNewCarTests extends HmwTestBase{
                 .typeFeature("type of ")
                 .about("Very nice car")
                 .build();
+        logger.info("car was added" + car.toString());
         app.getCar().openCarForm();
         app.getCar().fillCarForm(car);
-        app.getCar().attachPhoto();
-        app.getUserHelper().submitLogin();
+        app.getCar().attachPhoto(); // check
+        app.getUserHelper().submitLogin(); // fail
         Assert.assertTrue(app.getCar().isCarAdded());
         app.getCar().clickSearch();
     }
@@ -70,8 +71,8 @@ public class AddNewCarTests extends HmwTestBase{
                 .build();
         app.getCar().openCarForm();
         app.getCar().fillCarForm(car);
-        app.getCar().attachPhoto();
-        app.getUserHelper().submitLogin();
+        app.getCar().attachPhoto(); // check
+        app.getUserHelper().submitLogin(); // fail
         Assert.assertTrue(app.getCar().isCarAdded());
         app.getCar().clickSearch();
     }

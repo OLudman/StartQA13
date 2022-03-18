@@ -2,6 +2,9 @@ package hmwmanager;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.BrowserType;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.testng.annotations.BeforeMethod;
@@ -15,10 +18,20 @@ public class ApplicationManager {
     CarHelper car;
     HelperSearch search;
     Logger logger = LoggerFactory.getLogger(ApplicationManager.class);
+    String browser;
+
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+    }
+
 
     public void init(){
-        wd = new ChromeDriver();
-        logger.info("All tests starts in Chrome browser");
+        if (browser.equals(BrowserType.CHROME)) {
+            wd = new EventFiringWebDriver(new ChromeDriver());
+        }else if(browser.equals(BrowserType.FIREFOX)){
+            wd= new EventFiringWebDriver(new FirefoxDriver());
+        }
+        logger.info("All tests starts in browser " + browser);
         wd.navigate().to("https://ilcarro.xyz/search");
         wd.manage().window().maximize();
         wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);

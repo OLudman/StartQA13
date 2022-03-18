@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="Reg" verbose="1" >
+    <test name="Reg" >
+        <groups>
+            <run>
+                <include name="web" />
+            </run>
+        </groups>
+        <classes>
+            <class name="homework.HmwRegistration" />
+        </classes>
+    </test>
+
+
+</suite>
